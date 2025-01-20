@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web AIMLOCK</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            overflow: hidden;
+            background: black;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        /* Latar belakang dengan percikan api */
+        #background {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: black;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        .spark {
+            position: absolute;
+            width: 5px;
+            height: 5px;
+            background: orange;
+            border-radius: 50%;
+            animation: sparkle 2s infinite;
+        }
+
+        @keyframes sparkle {
+            0% {
+                transform: translateY(0) translateX(0);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(300px) translateX(200px);
+                opacity: 0;
+            }
+        }
+
+        /* Kotak Login */
+        .login-container, .menu-container {
+            text-align: center;
+            background: rgba(0, 0, 0, 0.8);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px orange;
+        }
+
+        .login-container input {
+            display: block;
+            margin: 10px auto;
+            padding: 10px;
+            width: 80%;
+            border: 2px solid orange;
+            border-radius: 5px;
+            background: black;
+            color: white;
+        }
+
+        button {
+            padding: 10px 20px;
+            background: orange;
+            border: none;
+            color: black;
+            font-weight: bold;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .menu-container {
+            display: none;
+        }
+
+        .blocks {
+            display: flex;
+            justify-content: space-around;
+            margin: 20px 0;
+        }
+
+        .block {
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid orange;
+            border-radius: 5px;
+            width: 30%;
+            text-align: center;
+            cursor: pointer;
+        }
+
+        .notification {
+            margin-top: 20px;
+            display: none;
+            background: green;
+            padding: 10px;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Latar Percikan -->
+    <div id="background"></div>
+
+    <!-- Halaman Login -->
+    <div class="login-container">
+        <h1>Login</h1>
+        <input type="text" id="username" placeholder="Username">
+        <input type="password" id="password" placeholder="Password">
+        <button onclick="login()">Login</button>
+    </div>
+
+    <!-- Menu Utama -->
+    <div class="menu-container">
+        <h1>Menu</h1>
+        <div class="blocks">
+            <div class="block">AIMLOCK ON/OFF</div>
+            <div class="block">BYPASS VVIP ON/OFF</div>
+            <div class="block" onclick="showNotification()">INJECT TO GAME</div>
+        </div>
+        <div class="notification">Inject Activated</div>
+    </div>
+
+    <script>
+        // Percikan api
+        const background = document.getElementById('background');
+        for (let i = 0; i < 100; i++) {
+            const spark = document.createElement('div');
+            spark.className = 'spark';
+            spark.style.top = Math.random() * 100 + '%';
+            spark.style.left = Math.random() * 100 + '%';
+            spark.style.animationDelay = Math.random() * 2 + 's';
+            background.appendChild(spark);
+        }
+
+        // Fungsi Login
+        function login() {
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;if (username === 'Venuss' && password === 'Venus11') {
+                document.querySelector('.login-container').style.display = 'none';
+                document.querySelector('.menu-container').style.display = 'block';
+            } else {
+                alert('Username atau Password salah!');
+            }
+        }
+
+        // Tampilkan Notifikasi
+        function showNotification() {
+            const notification = document.querySelector('.notification');
+            notification.style.display = 'block';
+            setTimeout(() => {
+                notification.style.display = 'none';
+            }, 2000);
+        }
+    </script>
+</body>
+</html>
